@@ -66,7 +66,7 @@ export default function Product() {
   return (
     <Root>
       <Head>
-        <title>{product.name} | Japan Ceramics</title>
+        <title>{product.name} | JapanCeramics</title>
       </Head>
 
       <div className="py-5 my-5">
@@ -103,27 +103,13 @@ export default function Product() {
             </div>
             <Collapse isOpened={showShipping}>
               <div className="pb-4 font-color-medium">
-                Arrives in 5 to 7 days, returns accepted within 30 days. For more information, click
-                here.
+                Every item ships within two business days. Please allow 2 - 4 weeks for delivery.
+                <br />
+                <br />
+                Due to product fragility, returns are not accepted.
               </div>
             </Collapse>
             <div className="h-1 border-bottom border-color-black" />
-            <div
-              onClick={toggleDetails}
-              className="d-flex cursor-pointer py-3 justify-content-between font-weight-medium"
-            >
-              Details
-              <img src="/icon/plus.svg" />
-            </div>
-            <Collapse isOpened={showDetails}>
-              <div
-                className="pb-4 font-color-medium"
-                dangerouslySetInnerHTML={{
-                  __html: detailView,
-                }}
-              />
-            </Collapse>
-            <div className="h-1 borderbottom border-color-black" />
           </div>
         </div>
       </div>
