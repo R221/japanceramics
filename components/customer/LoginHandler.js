@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import Head from 'next/head';
-import Router, { withRouter } from 'next/router';
-import { compose } from 'redux';
-import { connect } from 'react-redux';
-import { setCustomer } from '../../store/actions/authenticateActions';
-import commerce from '../../lib/commerce';
-import Root from '../../components/common/Root';
-import Footer from '../../components/common/Footer';
-import LoginAnimation from '../../components/customer/LoginAnimation';
+import React, { Component } from "react";
+import Head from "next/head";
+import Router, { withRouter } from "next/router";
+import { compose } from "redux";
+import { connect } from "react-redux";
+import { setCustomer } from "../../store/actions/authenticateActions";
+import commerce from "../../lib/commerce";
+import Root from "../../components/common/Root";
+import Footer from "../../components/common/Footer";
+import LoginAnimation from "../../components/customer/LoginAnimation";
 
 class LoginHandler extends Component {
   constructor(props) {
@@ -38,16 +38,17 @@ class LoginHandler extends Component {
       message: null,
     });
 
-    commerce.customer.getToken(token)
+    commerce.customer
+      .getToken(token)
       .then(() => {
         // Fetch customer details
-        return setCustomer().then(() => Router.push('/account'));
+        return setCustomer().then(() => Router.push("/account"));
       })
       .catch(() => {
         this.setState({
           loading: false,
           isError: true,
-          message: ['The login link has expired. Please try again.'],
+          message: ["The login link has expired. Please try again."],
         });
       });
   }
@@ -57,7 +58,7 @@ class LoginHandler extends Component {
    */
   handleChangeEmail(event) {
     this.setState({
-      email: event.target.value
+      email: event.target.value,
     });
   }
 
@@ -79,20 +80,18 @@ class LoginHandler extends Component {
       message: null,
     });
 
-    return commerce.customer.login(
-      email,
-      `${window.location.origin}/login?token={token}`
-    )
+    return commerce.customer
+      .login(email, `${window.location.origin}/login?token={token}`)
       .then(() => {
         this.setState({
           isError: false,
-          email: '',
+          email: "",
           message: [
-            'If that email address exists in our system, we\'ve just sent you a link to continue logging in!'
-          ]
+            "If that email address exists in our system, we've just sent you a link to continue logging in!",
+          ],
         });
       })
-      .catch((error)=>{
+      .catch((error) => {
         this.setState({
           isError: true,
           message: error.data.error.errors.email,
@@ -110,18 +109,19 @@ class LoginHandler extends Component {
     }
 
     // Generate alert message as either list or single line.
-    const alertMessage = message.length === 1
-      ? message[0]
-      : (
+    const alertMessage =
+      message.length === 1 ? (
+        message[0]
+      ) : (
         <ul className="text-left m-0">
-          { message.map((copy) => <li key={copy}>{copy}</li>) }
+          {message.map((copy) => (
+            <li key={copy}>{copy}</li>
+          ))}
         </ul>
       );
 
     return (
-      <div className={`alert ${isError ? 'alert-danger' : 'alert-success'}`}>
-        { alertMessage }
-      </div>
+      <div className={`alert ${isError ? "alert-danger" : "alert-success"}`}>{alertMessage}</div>
     );
   }
 
@@ -134,9 +134,7 @@ class LoginHandler extends Component {
     return (
       <form>
         <label className="w-100 mb-4">
-          <p className="mb-1 font-size-caption font-color-light text-left">
-            Email address
-          </p>
+          <p className="mb-1 font-size-caption font-color-light text-left">Email address</p>
           <input
             name="email"
             type="email"
@@ -180,11 +178,9 @@ class LoginHandler extends Component {
           <div className="row mt-5 pt-5">
             <div className="col-12 col-md-6 col-lg-6 offset-lg-3 offset-md-3  row-content text-center">
               <div className="py-5 px-4 px-sm-5">
-                <h2 className="font-size-header mb-4">
-                  Login
-                </h2>
-                { this.renderAlert() }
-                { this.renderForm() }
+                <h2 className="font-size-header mb-4">Welcome back</h2>
+                {this.renderAlert()}
+                {this.renderForm()}
               </div>
             </div>
           </div>

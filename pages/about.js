@@ -6,7 +6,7 @@ import Footer from "../components/common/Footer";
 const About = () => (
   <Root>
     <Head>
-      <title>About | Japan Cermaics</title>
+      <title>About | JapanCeramics</title>
     </Head>
     <div className="about-container">
       {/* Row */}
