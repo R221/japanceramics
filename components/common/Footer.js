@@ -94,7 +94,7 @@ const Footer = () => (
               target="_blank"
               rel="noopener noreferrer"
             >
-              Made possible with Chec Commerce
+              Made possible by Chec Commerce
             </a>
           </div>
           <div className="font-color-brand font-size-caption py-4 text-right">
